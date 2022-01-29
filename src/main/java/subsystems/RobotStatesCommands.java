@@ -1,6 +1,6 @@
 package subsystems;
 
-public interface RobotStates {
+public interface RobotStatesCommands {
     abstract void eject();
 
     abstract void climb();

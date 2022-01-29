@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    _robot.updateStates();
+    _robot.updateStates(null);
   }
 
   @Override

@@ -3,28 +3,29 @@ package subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
+import frc.robot.constants.SystemConstants;
 
 
 
 class NinjaDrive extends NinjaSubsystem {
 
-    WPI_TalonSRX _FL,_RL,_FR,_RR;
+    private WPI_TalonSRX _FL,_RL,_FR,_RR;
     Joystick _j;
-    MecanumDrive _drive;
+    private MecanumDrive _drive;
 
     @Override
     protected void initSubsystem() {
         
-        _j = new Joystick(0);
+        _j = new Joystick(SystemConstants._joystic);
 
-        _FL = new WPI_TalonSRX(0);
-        _RL = new WPI_TalonSRX(0);
-        _FR = new WPI_TalonSRX(0);
-        _RR = new WPI_TalonSRX(0);
+        _FL = new WPI_TalonSRX(SystemConstants._FL);
+        _RL = new WPI_TalonSRX(SystemConstants._RL);
+        _FR = new WPI_TalonSRX(SystemConstants._FR);
+        _RR = new WPI_TalonSRX(SystemConstants._RR);
 
         _FR.setInverted(true);
         _RR.setInverted(true);
-
+        
         _drive = new MecanumDrive(_FL,_RL,_FR,_RR);
         
     }

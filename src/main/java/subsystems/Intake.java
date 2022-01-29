@@ -3,15 +3,20 @@ package subsystems;
 import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
+import frc.robot.NinjaUtils.NinjaUtils;
+import frc.robot.constants.SystemConstants;
 
 
 
  class Intake extends NinjaSubsystem {
     
     
-    TalonSRX _angle;
-    VictorSPX _intake;
+    private TalonSRX _angle;
+    private VictorSPX _intake;
+
     private final int kCollecting_angle = 0;
     private final int kEjecting_angle = 0;
 
@@ -24,8 +29,13 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
     @Override
     protected void initSubsystem() {
         // TODO Auto-generated method stub
-        _angle = new TalonSRX(0);
-        _intake = new VictorSPX(0);
+        _angle = new TalonSRX(SystemConstants._angle_intake);
+        _intake = new VictorSPX(SystemConstants._intake);
+        
+        
+        
+        
+        NinjaUtils.configTalon(_angle,0,0,0,0,0);
         
     }
 
