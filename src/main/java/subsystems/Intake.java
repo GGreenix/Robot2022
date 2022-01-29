@@ -26,7 +26,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
         // TODO Auto-generated method stub
         _angle = new TalonSRX(0);
         _intake = new VictorSPX(0);
-        super.initSubsystem();
+        
     }
 
     

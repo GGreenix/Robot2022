@@ -16,13 +16,11 @@ abstract class NinjaSubsystem implements RobotStates {
                     case CLIMB:
                         
                     default:
-                        neutral();
-                        
-                    
+                        neutral();  
                 }
     }
 
-    protected void initSubsystem(){}
+    protected abstract void initSubsystem();
 
     
 

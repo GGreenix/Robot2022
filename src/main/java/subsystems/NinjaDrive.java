@@ -11,7 +11,7 @@ class NinjaDrive extends NinjaSubsystem {
     WPI_TalonSRX _FL,_RL,_FR,_RR;
     Joystick _j;
     MecanumDrive _drive;
-    
+
     @Override
     protected void initSubsystem() {
         
@@ -26,7 +26,7 @@ class NinjaDrive extends NinjaSubsystem {
         _RR.setInverted(true);
 
         _drive = new MecanumDrive(_FL,_RL,_FR,_RR);
-        super.initSubsystem();
+        
     }
 
     

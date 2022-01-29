@@ -1,11 +1,11 @@
 package subsystems;
 
 public interface RobotStates {
-    void eject();
+    abstract void eject();
 
-    void climb();
+    abstract void climb();
 
-    void neutral();
+    abstract void neutral();
 
-    void collect();
+    abstract void collect();
 }

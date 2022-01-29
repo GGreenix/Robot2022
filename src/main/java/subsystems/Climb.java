@@ -25,5 +25,11 @@ public class Climb extends NinjaSubsystem{
         // TODO Auto-generated method stub
         
     }
+
+    @Override
+    protected void initSubsystem() {
+        // TODO Auto-generated method stub
+        
+    }
     
 }
