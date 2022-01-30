@@ -1,4 +1,4 @@
-package subsystems;
+package frc.robot.subsystems;
 
 public interface RobotStatesCommands {
     abstract void eject();

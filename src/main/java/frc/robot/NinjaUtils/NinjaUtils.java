@@ -11,4 +11,6 @@ public class NinjaUtils {
         controller.config_IntegralZone(slot, kIzone);
         
     }
+
+    
 }
