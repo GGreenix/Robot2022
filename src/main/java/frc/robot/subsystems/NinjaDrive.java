@@ -24,7 +24,7 @@ public class NinjaDrive extends NinjaSubsystem {
     @Override
     public void initSubsystem() {
 
-        _j = new Joystick(SystemConstants._joystic);
+        _j = new Joystick(SystemConstants._joystick);
 
         _FL = new WPI_TalonSRX(SystemConstants._FL);
         _RL = new WPI_TalonSRX(SystemConstants._RL);

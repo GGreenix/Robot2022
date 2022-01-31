@@ -4,7 +4,10 @@
 
 package frc.robot;
 
+import java.io.FileNotFoundException;
+
 import edu.wpi.first.wpilibj.TimedRobot;
+import frc.robot.Autonomus.AutonomusHandler;
 import frc.robot.constants.RobotStates;
 
 /**
@@ -17,7 +20,7 @@ import frc.robot.constants.RobotStates;
  * project.
  */
 public class Robot extends TimedRobot {
-
+  AutonomusHandler _auto;
   NinjaRobot _robot;
 
   /**
@@ -27,20 +30,29 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    try {
+      _auto.init();
+    } catch (FileNotFoundException e) {
+      
+      e.printStackTrace();
+    }
     _robot.initSubsystems();
   }
 
   @Override
   public void robotPeriodic() {
+    
   }
 
   @Override
   public void autonomousInit() {
+    
     _robot.updateStates(RobotStates.EJECT);
   }
 
   @Override
   public void autonomousPeriodic() {
+    _auto.startAutonomus();
   }
 
   @Override

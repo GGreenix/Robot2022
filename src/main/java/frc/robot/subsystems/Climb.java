@@ -73,6 +73,7 @@ import frc.robot.constants.SystemConstants;
     @Override
     public void eject() {
         // TODO Auto-generated method stub
+        staic();
 
     }
 

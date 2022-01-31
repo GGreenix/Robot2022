@@ -1,7 +1,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.constants.RobotStates;
 import frc.robot.subsystems.Climb;
 import frc.robot.subsystems.Intake;
@@ -14,7 +14,7 @@ public class NinjaRobot {
     private Intake _intake;
     private NinjaDrive _drive;
     private Climb _climb;
-    JoystickButton exm = new JoystickButton(_states_joystick, 0);
+    
 
     private void _statesController() {
         

@@ -16,6 +16,7 @@ public class ClimbSequancer {
         _currentExecutedCommand = ClimberStates.STATIC;
 
         _sequance.push(ClimberStates.START);//climb to lvl 2
+        _sequance.push(ClimberStates.RETRACT);
         _sequance.push(ClimberStates.STATIC);
         _sequance.push(ClimberStates.TARGETAGNLE);
         _sequance.push(ClimberStates.EXTEND);

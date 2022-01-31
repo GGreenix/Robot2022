@@ -17,7 +17,8 @@ public class SystemConstants {
     public static final int _piston_slave = 0;
 
     //joystics
-    public static final int _joystic = 0;
+    public static final int _joystick = 0;
+    public static final int _states_joystick = 0;
     
     
 
