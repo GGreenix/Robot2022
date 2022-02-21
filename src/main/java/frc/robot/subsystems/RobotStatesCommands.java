@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 public interface RobotStatesCommands {
+    abstract boolean isAtState();
+
     abstract void eject();
 
     abstract void climb();

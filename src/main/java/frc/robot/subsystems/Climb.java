@@ -113,4 +113,10 @@ import frc.robot.constants.SystemConstants;
         staic();
     }
 
+    @Override
+    public boolean isAtState() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
 }

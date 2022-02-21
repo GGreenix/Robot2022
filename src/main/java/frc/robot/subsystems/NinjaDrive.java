@@ -1,25 +1,32 @@
 package frc.robot.subsystems;
 
+
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import org.photonvision.PhotonCamera;
-import org.photonvision.common.hardware.VisionLEDMode;
-
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import frc.robot.constants.SystemConstants;
+import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.Pixy2CCC.Block;
+import io.github.pseudoresonance.pixy2api.links.SPILink;
 
 public class NinjaDrive extends NinjaSubsystem {
 
-    private final int _neutralCameraPipelineIndex = 0;
-    private final int _collectCameraPipelineIndex = 0;
-    private final int _ejectCameraPipelineIndex = 0;
+    
 
     private WPI_TalonSRX _FL, _RL, _FR, _RR;
     private Joystick _j;
     private MecanumDrive _drive;
 
-    PhotonCamera _camera;// check name
+    private PIDController pid_x = new PIDController(0,0,0);
+    private PIDController pid_y = new PIDController(0,0,0);
+    private PIDController pid_rot = new PIDController(0,0,0);
+
+    private Pixy2 pixy;
+    // PhotonCamera _camera;// check name
+    
 
     @Override
     public void initSubsystem() {
@@ -35,15 +42,29 @@ public class NinjaDrive extends NinjaSubsystem {
         _RR.setInverted(true);
 
         _drive = new MecanumDrive(_FL, _RL, _FR, _RR);
-
-        _camera = new PhotonCamera("LimeLight 2+");
+        pixy = Pixy2.createInstance(new SPILink());
+        pixy.init();
+        
 
     }
-
-    void drive(boolean _img_proc) {
-        _camera.setDriverMode(true);
-        if (_img_proc) {
-            _drive.driveCartesian(_j.getY(), _j.getX(), _j.getZ());
+   
+    void driveImgProcCollect(){
+        final int  x_setpoint = 0;
+        final int  y_setpoint = 0;
+        final int rot_setpoint = 0;
+        
+        
+        pixy.getCCC().getBlocks();
+        Block f = pixy.getCCC().getBlockCache().get(0);
+        
+        _drive.driveCartesian(pid_y.calculate(f.getHeight()*f.getWidth(),y_setpoint), pid_x.calculate(f.getX(), x_setpoint), pid_rot.calculate(f.getAngle(), rot_setpoint));
+        
+    }
+    
+    void drive() {
+        
+        if (super.execute_command) {
+            driveImgProcCollect();
         } // add values of limelight/vision sensor
         else {
             _drive.driveCartesian(_j.getY(), _j.getX(), _j.getZ());
@@ -51,32 +72,33 @@ public class NinjaDrive extends NinjaSubsystem {
 
     }
 
-    void drive() {
-        _drive.driveCartesian(_j.getY(), _j.getX(), _j.getZ());
-    }
+    
 
     @Override
     public void eject() {
-        _camera.setPipelineIndex(_ejectCameraPipelineIndex);
-        _camera.setLED(VisionLEDMode.kOn);
+        drive();
 
     }
 
     @Override
     public void climb() {
-
+        drive();
     }
 
     @Override
     public void neutral() {
-        _camera.setPipelineIndex(_neutralCameraPipelineIndex);
-        _camera.setLED(VisionLEDMode.kOff);
+        drive();
     }
 
     @Override
     public void collect() {
-        _camera.setPipelineIndex(_collectCameraPipelineIndex);
-        _camera.setLED(VisionLEDMode.kBlink);
+        drive();
+    }
+
+    @Override
+    public boolean isAtState() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }
